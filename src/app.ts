@@ -52,41 +52,43 @@ if (process.env.NODE_ENV === 'development') {
 
 //app.use(apiLimiter);
 
+// We are bypassing MongoDB connection entirely since you are migrating to Supabase.
+// connectDB().catch(err => {
+//   console.error('Database connection failed:', err);
+// });
+
 // Middleware
 app.use(json());
-if (process.env.NODE_ENV === 'development') {
-    app.use(process.env.SWAGGER_URL || '/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
-    
-}
+
+// Force Swagger to be available in production on Vercel so you can audit the API endpoints
+app.use(process.env.SWAGGER_URL || '/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 // Routes
 app.use(routes);
 
 // Default route (optional)
-app.get('', (req, res) => {
+app.get('/', (req, res) => {
   res.send('Welcome to the tamilmedia API - v1 ');
 });
 
 // Error handling middleware
 app.use(errorHandler);
 
-// Export the app for Vercel
-export default app;
+// Database connection disabled for Supabase migration
+// connectDB().catch(err => {
+//   console.error('Database connection failed:', err);
+// });
 
 // Start server locally (not on Vercel)
 if (!process.env.VERCEL) {
-  connectDB()
-    .then(() => {
-      const cronService = new CronService();
-      cronService.startScheduler();
-      
-      app.listen(PORT, () => {
-        console.log('Connected to database');
-        console.log(`Server is running on http://localhost:${PORT}/api/v1`);
-        console.log(`Swagger docs available at http://localhost:${PORT}${process.env.SWAGGER_URL || '/api-docs'}`);
-      });
-    })
-    .catch(err => {
-      console.error('Database connection failed:', err);
-    });
+  const cronService = new CronService();
+  cronService.startScheduler();
+  
+  app.listen(PORT, () => {
+    console.log(`Server is running on http://localhost:${PORT}/api/v1`);
+    console.log(`Swagger docs available at http://localhost:${PORT}${process.env.SWAGGER_URL || '/api-docs'}`);
+  });
 }
+
+// Export the app for Vercel
+export default app;

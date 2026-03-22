@@ -15,7 +15,6 @@ const helmet_1 = __importDefault(require("helmet"));
 const morgan_1 = __importDefault(require("morgan"));
 const logger_middleware_1 = __importDefault(require("./middlewares/logger.middleware"));
 const cors_1 = __importDefault(require("cors"));
-const database_1 = __importDefault(require("./config/database"));
 const cron_service_1 = require("./services/cron.service");
 // Load environment variables
 dotenv_1.default.config();
@@ -45,34 +44,34 @@ else {
     app.use((0, morgan_1.default)('combined')); // More detailed logging for production
 }
 //app.use(apiLimiter);
+// We are bypassing MongoDB connection entirely since you are migrating to Supabase.
+// connectDB().catch(err => {
+//   console.error('Database connection failed:', err);
+// });
 // Middleware
 app.use((0, body_parser_1.json)());
-if (process.env.NODE_ENV === 'development') {
-    app.use(process.env.SWAGGER_URL || '/api-docs', swagger_ui_express_1.default.serve, swagger_ui_express_1.default.setup(swagger_1.default));
-}
+// Force Swagger to be available in production on Vercel so you can audit the API endpoints
+app.use(process.env.SWAGGER_URL || '/api-docs', swagger_ui_express_1.default.serve, swagger_ui_express_1.default.setup(swagger_1.default));
 // Routes
 app.use(index_1.default);
 // Default route (optional)
-app.get('', (req, res) => {
+app.get('/', (req, res) => {
     res.send('Welcome to the tamilmedia API - v1 ');
 });
 // Error handling middleware
 app.use(error_middleware_1.errorHandler);
-// Export the app for Vercel
-exports.default = app;
+// Database connection disabled for Supabase migration
+// connectDB().catch(err => {
+//   console.error('Database connection failed:', err);
+// });
 // Start server locally (not on Vercel)
 if (!process.env.VERCEL) {
-    (0, database_1.default)()
-        .then(() => {
-        const cronService = new cron_service_1.CronService();
-        cronService.startScheduler();
-        app.listen(PORT, () => {
-            console.log('Connected to database');
-            console.log(`Server is running on http://localhost:${PORT}/api/v1`);
-            console.log(`Swagger docs available at http://localhost:${PORT}${process.env.SWAGGER_URL || '/api-docs'}`);
-        });
-    })
-        .catch(err => {
-        console.error('Database connection failed:', err);
+    const cronService = new cron_service_1.CronService();
+    cronService.startScheduler();
+    app.listen(PORT, () => {
+        console.log(`Server is running on http://localhost:${PORT}/api/v1`);
+        console.log(`Swagger docs available at http://localhost:${PORT}${process.env.SWAGGER_URL || '/api-docs'}`);
     });
 }
+// Export the app for Vercel
+exports.default = app;
