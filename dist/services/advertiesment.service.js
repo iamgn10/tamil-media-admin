@@ -38,9 +38,9 @@ let AdvertiesmentService = class AdvertiesmentService {
         return await this.advertiesmentRepository.deleteAdvertiesment(advertiesmentId);
     }
 };
-AdvertiesmentService = __decorate([
+exports.AdvertiesmentService = AdvertiesmentService;
+exports.AdvertiesmentService = AdvertiesmentService = __decorate([
     (0, tsyringe_1.injectable)(),
     __param(0, (0, tsyringe_1.inject)(advertiesment_repository_1.AdvertiesmentRepository)),
     __metadata("design:paramtypes", [advertiesment_repository_1.AdvertiesmentRepository])
 ], AdvertiesmentService);
-exports.AdvertiesmentService = AdvertiesmentService;

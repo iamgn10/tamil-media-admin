@@ -64,9 +64,9 @@ let MediaService = class MediaService {
         return true;
     }
 };
-MediaService = __decorate([
+exports.MediaService = MediaService;
+exports.MediaService = MediaService = __decorate([
     (0, tsyringe_1.injectable)(),
     __param(0, (0, tsyringe_1.inject)(media_repository_1.MediaRepository)),
     __metadata("design:paramtypes", [media_repository_1.MediaRepository])
 ], MediaService);
-exports.MediaService = MediaService;

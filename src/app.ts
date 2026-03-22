@@ -70,18 +70,23 @@ app.get('', (req, res) => {
 // Error handling middleware
 app.use(errorHandler);
 
-// Database connection
-connectDB()
-  .then(() => {
-    const cronService = new CronService();
-    cronService.startScheduler();
-    
-    app.listen(PORT, () => {
-      console.log('Connected to database');
-      console.log(`Server is running on http://localhost:${PORT}/api/v1`);
-      console.log(`Swagger docs available at http://localhost:${PORT}${process.env.SWAGGER_URL || '/api-docs'}`);
+// Export the app for Vercel
+export default app;
+
+// Start server locally (not on Vercel)
+if (!process.env.VERCEL) {
+  connectDB()
+    .then(() => {
+      const cronService = new CronService();
+      cronService.startScheduler();
+      
+      app.listen(PORT, () => {
+        console.log('Connected to database');
+        console.log(`Server is running on http://localhost:${PORT}/api/v1`);
+        console.log(`Swagger docs available at http://localhost:${PORT}${process.env.SWAGGER_URL || '/api-docs'}`);
+      });
+    })
+    .catch(err => {
+      console.error('Database connection failed:', err);
     });
-  })
-  .catch(err => {
-    console.error('Database connection failed:', err);
-  });
+}

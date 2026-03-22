@@ -35,7 +35,7 @@ export class KeywordController  {
 
     async getKeywordById(req: Request, res: Response, next: NextFunction): Promise<void> {
         try {
-            const { id } = req.params;
+            const { id } = req.params as { id: string };
             if (!mongoose.Types.ObjectId.isValid(id)) {
                 return next(new AppError(400, 'Invalid ID format'));
             }
@@ -55,7 +55,7 @@ export class KeywordController  {
 
     async updateKeyword(req: Request, res: Response, next: NextFunction): Promise<void> {
         try {
-            const { id } = req.params;
+            const { id } = req.params as { id: string };
             if (!mongoose.Types.ObjectId.isValid(id)) {
                 return next(new AppError(400, 'Invalid ID format'));
             }
@@ -75,7 +75,7 @@ export class KeywordController  {
 
     async deleteKeyword(req: Request, res: Response, next: NextFunction): Promise<void> {
         try {
-            const { id } = req.params;
+            const { id } = req.params as { id: string };
             if (!mongoose.Types.ObjectId.isValid(id)) {
                 return next(new AppError(400, 'Invalid ID format'));
             }

@@ -56,9 +56,9 @@ let ContentService = class ContentService {
         return await this.contentRepository.findContentByKeyword(keyword);
     }
 };
-ContentService = __decorate([
+exports.ContentService = ContentService;
+exports.ContentService = ContentService = __decorate([
     (0, tsyringe_1.injectable)(),
     __param(0, (0, tsyringe_1.inject)(content_repository_1.ContentRepository)),
     __metadata("design:paramtypes", [content_repository_1.ContentRepository])
 ], ContentService);
-exports.ContentService = ContentService;

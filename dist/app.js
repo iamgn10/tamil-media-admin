@@ -28,8 +28,8 @@ app.set('etag', false);
 app.set('trust proxy', 1); // Trust first proxy
 // CORS middleware
 const corsOptions = {
-    origin: '*',
-    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    origin: '*', // Allow all origins or specify the frontend's URL
+    methods: ['GET', 'POST', 'PUT', 'DELETE'], // Specify allowed methods
     allowedHeaders: ['Content-Type', 'Authorization'], // Allow specific headers
 };
 app.use((0, cors_1.default)(corsOptions)); // Use CORS middleware
@@ -58,17 +58,21 @@ app.get('', (req, res) => {
 });
 // Error handling middleware
 app.use(error_middleware_1.errorHandler);
-// Database connection
-(0, database_1.default)()
-    .then(() => {
-    const cronService = new cron_service_1.CronService();
-    cronService.startScheduler();
-    app.listen(PORT, () => {
-        console.log('Connected to database');
-        console.log(`Server is running on http://localhost:${PORT}/api/v1`);
-        console.log(`Swagger docs available at http://localhost:${PORT}${process.env.SWAGGER_URL || '/api-docs'}`);
+// Export the app for Vercel
+exports.default = app;
+// Start server locally (not on Vercel)
+if (!process.env.VERCEL) {
+    (0, database_1.default)()
+        .then(() => {
+        const cronService = new cron_service_1.CronService();
+        cronService.startScheduler();
+        app.listen(PORT, () => {
+            console.log('Connected to database');
+            console.log(`Server is running on http://localhost:${PORT}/api/v1`);
+            console.log(`Swagger docs available at http://localhost:${PORT}${process.env.SWAGGER_URL || '/api-docs'}`);
+        });
+    })
+        .catch(err => {
+        console.error('Database connection failed:', err);
     });
-})
-    .catch(err => {
-    console.error('Database connection failed:', err);
-});
+}

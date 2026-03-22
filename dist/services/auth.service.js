@@ -37,7 +37,7 @@ let AuthService = class AuthService {
             email: user.email,
             username: user.username,
             mobile: user.mobile || '',
-            roleId: user.roleId ? user.roleId._id.toString() : '',
+            roleId: user.roleId ? user.roleId._id.toString() : '', // ✅ Extract ObjectId as string
             roleName: user.roleId ? user.roleId.role_name : '' // ✅ Extract role name from populated data
         };
     }
@@ -136,11 +136,11 @@ let AuthService = class AuthService {
         return await this.authRepository.getAllUsers();
     }
 };
-AuthService = __decorate([
+exports.AuthService = AuthService;
+exports.AuthService = AuthService = __decorate([
     (0, tsyringe_1.injectable)(),
     __param(0, (0, tsyringe_1.inject)(auth_repository_1.AuthRepository)),
     __param(1, (0, tsyringe_1.inject)(userRole_service_1.UserRoleService)),
     __metadata("design:paramtypes", [auth_repository_1.AuthRepository,
         userRole_service_1.UserRoleService])
 ], AuthService);
-exports.AuthService = AuthService;

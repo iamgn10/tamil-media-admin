@@ -25,7 +25,7 @@ export class UserRoleRepository implements IUserRoleRepository {
     }
 
     async updateUserRole(userId: string, updateData: Partial<IRole>): Promise<IRole | null> {
-        return await Role.findByIdAndUpdate(userId, updateData, { new: true });
+        return await (Role as any).findByIdAndUpdate(userId, updateData, { new: true });
     }   
 
     async deleteUserRole(userId: string): Promise<boolean> {

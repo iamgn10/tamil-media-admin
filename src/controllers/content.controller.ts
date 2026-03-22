@@ -217,7 +217,7 @@ export class ContentController  {
 
     async getContentById(req: Request, res: Response, next: NextFunction): Promise<void> {
         try {
-            const { id } = req.params;
+            const { id } = req.params as { id: string };
             if (!mongoose.Types.ObjectId.isValid(id)) {
                 return next(new AppError(400, 'Invalid ID format'));
             }
@@ -243,7 +243,7 @@ export class ContentController  {
     
     async updateContent(req: Request, res: Response, next: NextFunction): Promise<void> {
       try {
-          const { id } = req.params;
+          const { id } = req.params as { id: string };
           if (!mongoose.Types.ObjectId.isValid(id)) {
               return next(new AppError(400, 'Invalid ID format'));
           }
@@ -353,7 +353,7 @@ export class ContentController  {
 
     async deleteContent(req: Request, res: Response, next: NextFunction): Promise<void> {
         try {
-            const { id } = req.params;
+            const { id } = req.params as { id: string };
             if (!mongoose.Types.ObjectId.isValid(id)) {
                 return next(new AppError(400, 'Invalid ID format'));
             }
@@ -412,7 +412,7 @@ export class ContentController  {
 
     async changeContentStatus(req: Request, res: Response, next: NextFunction): Promise<void> {
         try {
-            const { id } = req.params;
+            const { id } = req.params as { id: string };
             if (!mongoose.Types.ObjectId.isValid(id)) {
                 return next(new AppError(400, 'Invalid ID format'));
             }
@@ -444,7 +444,7 @@ export class ContentController  {
 
     async getContentsByUrl(req: Request, res: Response, next: NextFunction): Promise<void> {
         try {
-            const { url } = req.params;
+            const { url } = req.params as { url: string };
             if (!url) {
                 return next(new AppError(400, 'URL is required'));
             }
@@ -475,7 +475,7 @@ export class ContentController  {
 
     async getContentsByCategory(req: Request, res: Response, next: NextFunction): Promise<void> {
         try {
-            const { category } = req.params;
+            const { category } = req.params as { category: string };
             if (!category) {
                 return next(new AppError(400, 'Category is required'));
             }
@@ -504,7 +504,7 @@ export class ContentController  {
 
     async getSingleContentByUrl(req: Request, res: Response, next: NextFunction): Promise<void> {
         try {
-            const { url } = req.params;
+            const { url } = req.params as { url: string };
             if (!url) {
                 return next(new AppError(400, 'URL is required'));
             }

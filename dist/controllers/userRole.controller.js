@@ -108,9 +108,9 @@ let UserRoleController = class UserRoleController {
         }
     }
 };
-UserRoleController = __decorate([
+exports.UserRoleController = UserRoleController;
+exports.UserRoleController = UserRoleController = __decorate([
     (0, tsyringe_1.injectable)(),
     __param(0, (0, tsyringe_1.inject)(userRole_service_1.UserRoleService)),
     __metadata("design:paramtypes", [userRole_service_1.UserRoleService])
 ], UserRoleController);
-exports.UserRoleController = UserRoleController;

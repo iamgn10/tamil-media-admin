@@ -5,7 +5,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose_1 = __importDefault(require("mongoose"));
 const app_config_1 = require("./app.config");
+let isConnected = false;
 const connectDB = async (retries = 5) => {
+    if (isConnected || mongoose_1.default.connection.readyState === 1) {
+        console.log('MongoDB is already connected');
+        return;
+    }
     const mongoUri = app_config_1.config.database.uri;
     if (!mongoUri) {
         throw new Error('MONGODB_URI is not defined in environment variables');
@@ -18,6 +23,7 @@ const connectDB = async (retries = 5) => {
                 socketTimeoutMS: app_config_1.config.database.socketTimeoutMS,
                 bufferCommands: app_config_1.config.database.bufferCommands
             });
+            isConnected = true;
             console.log('MongoDB connected successfully');
             console.log(`Database: ${mongoUri.replace(/\/\/.*@/, '//***:***@')}`);
             return;

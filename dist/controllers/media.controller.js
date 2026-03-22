@@ -133,11 +133,11 @@ let MediaController = class MediaController {
         }
     }
 };
-MediaController = __decorate([
+exports.MediaController = MediaController;
+exports.MediaController = MediaController = __decorate([
     (0, tsyringe_1.injectable)(),
     __param(0, (0, tsyringe_1.inject)(media_service_1.MediaService)),
     __param(1, (0, tsyringe_1.inject)(authHelper_1.AuthHelper)),
     __metadata("design:paramtypes", [media_service_1.MediaService,
         authHelper_1.AuthHelper])
 ], MediaController);
-exports.MediaController = MediaController;

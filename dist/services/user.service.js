@@ -39,9 +39,9 @@ let UserService = class UserService {
         return await this.userRepository.deleteUser(userId);
     }
 };
-UserService = __decorate([
+exports.UserService = UserService;
+exports.UserService = UserService = __decorate([
     (0, tsyringe_1.injectable)(),
     __param(0, (0, tsyringe_1.inject)(user_repository_1.UserRepository)),
     __metadata("design:paramtypes", [user_repository_1.UserRepository])
 ], UserService);
-exports.UserService = UserService;

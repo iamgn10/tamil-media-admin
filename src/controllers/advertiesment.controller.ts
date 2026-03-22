@@ -129,7 +129,7 @@ export class AdvertiesmentController  {
 
     async getAdvertiesmentById(req: Request, res: Response, next: NextFunction): Promise<void> {
         try {
-            const { id } = req.params;
+            const { id } = req.params as { id: string };
             if (!mongoose.Types.ObjectId.isValid(id)) {
                 return next(new AppError(400, 'Invalid ID format'));
             }
@@ -149,7 +149,7 @@ export class AdvertiesmentController  {
 
     async updateAdvertiesment(req: Request, res: Response, next: NextFunction): Promise<void> {
         try {
-          const { id } = req.params;
+          const { id } = req.params as { id: string };
           if (!mongoose.Types.ObjectId.isValid(id)) {
             return next(new AppError(400, 'Invalid ID format'));
           }
@@ -255,7 +255,7 @@ export class AdvertiesmentController  {
 
     async deleteAdvertiesment(req: Request, res: Response, next: NextFunction): Promise<void> {
         try {
-            const { id } = req.params;
+            const { id } = req.params as { id: string };
             if (!mongoose.Types.ObjectId.isValid(id)) {
                 return next(new AppError(400, 'Invalid ID format'));
             }
@@ -275,7 +275,7 @@ export class AdvertiesmentController  {
 
     async changeAdvertiesmentStatus(req: Request, res: Response, next: NextFunction): Promise<void> {
         try {
-            const { id } = req.params;
+            const { id } = req.params as { id: string };
             if (!mongoose.Types.ObjectId.isValid(id)) {
                 return next(new AppError(400, 'Invalid ID format'));
             }

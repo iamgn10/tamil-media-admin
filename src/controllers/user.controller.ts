@@ -78,7 +78,7 @@ export class UserController  {
 
     async getUserById(req: Request, res: Response, next: NextFunction): Promise<void> {
         try {
-            const { id } = req.params;
+            const { id } = req.params as { id: string };
             const  validId = new mongoose.Types.ObjectId(id)
             // Validate the ID
             if (!mongoose.Types.ObjectId.isValid(validId)) {
@@ -100,7 +100,7 @@ export class UserController  {
 
     async updateUser(req: Request, res: Response, next: NextFunction): Promise<void> {
         try {
-            const { id } = req.params;
+            const { id } = req.params as { id: string };
             const  validId = new mongoose.Types.ObjectId(id)
             // Validate the ID
             if (!mongoose.Types.ObjectId.isValid(validId)) {
@@ -122,7 +122,7 @@ export class UserController  {
 
     async deleteUser(req: Request, res: Response, next: NextFunction): Promise<void> {
         try {
-            const { id } = req.params;
+            const { id } = req.params as { id: string };
             const  validId = new mongoose.Types.ObjectId(id)
             // Validate the ID
             if (!mongoose.Types.ObjectId.isValid(validId)) {

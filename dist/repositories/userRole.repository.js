@@ -35,7 +35,7 @@ let UserRoleRepository = class UserRoleRepository {
         return result !== null;
     }
 };
-UserRoleRepository = __decorate([
+exports.UserRoleRepository = UserRoleRepository;
+exports.UserRoleRepository = UserRoleRepository = __decorate([
     (0, tsyringe_1.injectable)()
 ], UserRoleRepository);
-exports.UserRoleRepository = UserRoleRepository;

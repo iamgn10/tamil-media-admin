@@ -90,7 +90,7 @@ let AuthRepository = class AuthRepository {
         return !!session;
     }
 };
-AuthRepository = __decorate([
+exports.AuthRepository = AuthRepository;
+exports.AuthRepository = AuthRepository = __decorate([
     (0, tsyringe_1.injectable)()
 ], AuthRepository);
-exports.AuthRepository = AuthRepository;

@@ -276,9 +276,9 @@ let AdvertiesmentController = class AdvertiesmentController {
         }
     }
 };
-AdvertiesmentController = __decorate([
+exports.AdvertiesmentController = AdvertiesmentController;
+exports.AdvertiesmentController = AdvertiesmentController = __decorate([
     (0, tsyringe_1.injectable)(),
     __param(0, (0, tsyringe_1.inject)(advertiesment_service_1.AdvertiesmentService)),
     __metadata("design:paramtypes", [advertiesment_service_1.AdvertiesmentService])
 ], AdvertiesmentController);
-exports.AdvertiesmentController = AdvertiesmentController;

@@ -35,9 +35,9 @@ let KeywordService = class KeywordService {
         return await this.keywordRepository.deleteKeyword(keywordId);
     }
 };
-KeywordService = __decorate([
+exports.KeywordService = KeywordService;
+exports.KeywordService = KeywordService = __decorate([
     (0, tsyringe_1.injectable)(),
     __param(0, (0, tsyringe_1.inject)(keyword_repository_1.KeywordRepository)),
     __metadata("design:paramtypes", [keyword_repository_1.KeywordRepository])
 ], KeywordService);
-exports.KeywordService = KeywordService;

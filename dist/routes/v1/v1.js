@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getV1Routes = void 0;
+exports.getV1Routes = getV1Routes;
 const auth_routes_1 = __importDefault(require("../auth.routes"));
 const roles_routes_1 = __importDefault(require("../roles.routes"));
 const user_routes_1 = __importDefault(require("../user.routes"));
@@ -25,4 +25,3 @@ function getV1Routes(router) {
     router.use('/media', media_routes_1.default);
     //return router;
 }
-exports.getV1Routes = getV1Routes;

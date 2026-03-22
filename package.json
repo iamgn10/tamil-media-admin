@@ -28,7 +28,6 @@
     "@types/mongoose": "^5.11.96",
     "@types/node-cron": "^3.0.11",
     "axios": "^1.10.0",
-    "bcrypt": "^6.0.0",
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
     "date-fns": "^4.1.0",
@@ -56,7 +55,6 @@
   },
   "devDependencies": {
     "@mapbox/node-pre-gyp": "^2.0.3",
-    "@types/bcrypt": "^5.0.2",
     "@types/bcryptjs": "^2.4.6",
     "@types/chai": "^5.0.1",
     "@types/cors": "^2.8.17",
@@ -81,6 +79,6 @@
     "ts-jest": "^29.4.0",
     "ts-mocha": "^10.0.0",
     "ts-node": "^10.9.2",
-    "typescript": "^4.4.4"
+    "typescript": "^5.9.3"
   }
 }

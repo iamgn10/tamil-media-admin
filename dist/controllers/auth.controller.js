@@ -219,10 +219,10 @@ let AuthController = class AuthController {
         }
     }
 };
-AuthController = __decorate([
+exports.AuthController = AuthController;
+exports.AuthController = AuthController = __decorate([
     (0, tsyringe_1.injectable)(),
     __param(0, (0, tsyringe_1.inject)(auth_service_1.AuthService)),
     __metadata("design:paramtypes", [auth_service_1.AuthService])
 ], AuthController);
-exports.AuthController = AuthController;
 exports.default = AuthController;

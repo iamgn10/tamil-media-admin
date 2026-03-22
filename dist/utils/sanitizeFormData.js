@@ -1,7 +1,7 @@
 "use strict";
 // utils/sanitizeFormData.ts
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.sanitizeFormData = void 0;
+exports.sanitizeFormData = sanitizeFormData;
 function sanitizeFormData(formData) {
     const result = {};
     for (const key in formData) {
@@ -28,4 +28,3 @@ function sanitizeFormData(formData) {
     }
     return result;
 }
-exports.sanitizeFormData = sanitizeFormData;

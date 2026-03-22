@@ -136,11 +136,11 @@ let UserController = class UserController {
         }
     }
 };
-UserController = __decorate([
+exports.UserController = UserController;
+exports.UserController = UserController = __decorate([
     (0, tsyringe_1.injectable)(),
     __param(0, (0, tsyringe_1.inject)(user_service_1.UserService)),
     __param(1, (0, tsyringe_1.inject)(auth_service_1.AuthService)),
     __metadata("design:paramtypes", [user_service_1.UserService,
         auth_service_1.AuthService])
 ], UserController);
-exports.UserController = UserController;

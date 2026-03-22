@@ -44,7 +44,7 @@ export class UserRoleController  {
 
     async getUserRoleById(req: Request, res: Response, next: NextFunction): Promise<void> {
         try {
-            const { id } = req.params;
+            const { id } = req.params as { id: string };
             if (!mongoose.Types.ObjectId.isValid(id)) {
                 return next(new AppError(400, 'Invalid ID format'));
             }
@@ -64,7 +64,7 @@ export class UserRoleController  {
 
     async updateUserRole(req: Request, res: Response, next: NextFunction): Promise<void> {
         try {
-            const { id } = req.params;
+            const { id } = req.params as { id: string };
             if (!mongoose.Types.ObjectId.isValid(id)) {
                 return next(new AppError(400, 'Invalid ID format'));
             }
@@ -84,7 +84,7 @@ export class UserRoleController  {
 
     async deleteUserRole(req: Request, res: Response, next: NextFunction): Promise<void> {
         try {
-            const { id } = req.params;
+            const { id } = req.params as { id: string };
             if (!mongoose.Types.ObjectId.isValid(id)) {
                 return next(new AppError(400, 'Invalid ID format'));
             }

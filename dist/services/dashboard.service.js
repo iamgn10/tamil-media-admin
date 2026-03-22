@@ -64,9 +64,9 @@ let DashboardService = class DashboardService {
         };
     }
 };
-DashboardService = __decorate([
+exports.DashboardService = DashboardService;
+exports.DashboardService = DashboardService = __decorate([
     (0, tsyringe_1.injectable)(),
     __param(0, (0, tsyringe_1.inject)(dashboard_repository_1.DashboardRepository)),
     __metadata("design:paramtypes", [dashboard_repository_1.DashboardRepository])
 ], DashboardService);
-exports.DashboardService = DashboardService;

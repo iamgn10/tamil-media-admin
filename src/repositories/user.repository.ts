@@ -8,19 +8,19 @@ import { injectable } from "tsyringe";
 export class UserRepository implements IUserRepository {
     
     async createUser(userData: Partial<IUser>): Promise<IUser> {
-        return await User.create(userData);
+        return await (User as any).create(userData);
     }
 
     async getAllUsers(): Promise<IUser[]> {
-        return await User.find();
+        return await (User as any).find();
     }
 
     async findUserById(userId: mongoose.Types.ObjectId): Promise<IUser | null> {
-        return await User.findById(userId);
+        return await (User as any).findById(userId);
     }
 
     async updateUser(userId: mongoose.Types.ObjectId, updateData: Partial<IUser>): Promise<IUser | null> {
-        return await User.findByIdAndUpdate(userId, updateData, { new: true });
+        return await (User as any).findByIdAndUpdate(userId, updateData, { new: true });
             
     }   
 
@@ -30,7 +30,7 @@ export class UserRepository implements IUserRepository {
         // await user.deleteOne();
         // return true;
 
-        const result = await User.findByIdAndDelete(userId);
+        const result = await (User as any).findByIdAndDelete(userId);
         return result !== null;
     }
 }

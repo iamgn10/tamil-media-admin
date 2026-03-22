@@ -1,7 +1,14 @@
 import mongoose from 'mongoose';
 import { config } from './app.config';
 
+let isConnected = false;
+
 const connectDB = async (retries = 5): Promise<void> => {
+  if (isConnected || mongoose.connection.readyState === 1) {
+    console.log('MongoDB is already connected');
+    return;
+  }
+
   const mongoUri = config.database.uri;
   
   if (!mongoUri) {
@@ -17,6 +24,7 @@ const connectDB = async (retries = 5): Promise<void> => {
         bufferCommands: config.database.bufferCommands
       });
       
+      isConnected = true;
       console.log('MongoDB connected successfully');
       console.log(`Database: ${mongoUri.replace(/\/\/.*@/, '//***:***@')}`);
       return;

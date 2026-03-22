@@ -537,11 +537,11 @@ let ContentController = class ContentController {
         }
     }
 };
-ContentController = __decorate([
+exports.ContentController = ContentController;
+exports.ContentController = ContentController = __decorate([
     (0, tsyringe_1.injectable)(),
     __param(0, (0, tsyringe_1.inject)(content_service_1.ContentService)),
     __param(1, (0, tsyringe_1.inject)(authHelper_1.AuthHelper)),
     __metadata("design:paramtypes", [content_service_1.ContentService,
         authHelper_1.AuthHelper])
 ], ContentController);
-exports.ContentController = ContentController;

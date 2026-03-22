@@ -118,11 +118,11 @@ let DashboardController = class DashboardController {
         }
     }
 };
-DashboardController = __decorate([
+exports.DashboardController = DashboardController;
+exports.DashboardController = DashboardController = __decorate([
     (0, tsyringe_1.injectable)(),
     __param(0, (0, tsyringe_1.inject)(dashboard_service_1.DashboardService)),
     __param(1, (0, tsyringe_1.inject)(authHelper_1.AuthHelper)),
     __metadata("design:paramtypes", [dashboard_service_1.DashboardService,
         authHelper_1.AuthHelper])
 ], DashboardController);
-exports.DashboardController = DashboardController;

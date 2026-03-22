@@ -13,4 +13,4 @@ var UserRoles;
     UserRoles["Publisher"] = "Publisher";
     UserRoles["SiteAdmin"] = "Site Admin";
     UserRoles["SuperAdmin"] = "Super Admin";
-})(UserRoles = exports.UserRoles || (exports.UserRoles = {}));
+})(UserRoles || (exports.UserRoles = UserRoles = {}));

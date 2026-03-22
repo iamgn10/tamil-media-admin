@@ -58,9 +58,9 @@ let AuthHelper = class AuthHelper {
         }
     }
 };
-AuthHelper = __decorate([
+exports.AuthHelper = AuthHelper;
+exports.AuthHelper = AuthHelper = __decorate([
     (0, tsyringe_1.injectable)(),
     __param(0, (0, tsyringe_1.inject)(auth_service_1.AuthService)),
     __metadata("design:paramtypes", [auth_service_1.AuthService])
 ], AuthHelper);
-exports.AuthHelper = AuthHelper;

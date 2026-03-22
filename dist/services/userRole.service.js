@@ -35,9 +35,9 @@ let UserRoleService = class UserRoleService {
         return await this.userRoleRepository.deleteUserRole(userId);
     }
 };
-UserRoleService = __decorate([
+exports.UserRoleService = UserRoleService;
+exports.UserRoleService = UserRoleService = __decorate([
     (0, tsyringe_1.injectable)(),
     __param(0, (0, tsyringe_1.inject)(userRole_repository_1.UserRoleRepository)),
     __metadata("design:paramtypes", [userRole_repository_1.UserRoleRepository])
 ], UserRoleService);
-exports.UserRoleService = UserRoleService;

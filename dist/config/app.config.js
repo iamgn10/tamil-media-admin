@@ -29,7 +29,7 @@ const configSchema = zod_1.z.object({
         port: zod_1.z.number().default(6379),
     }),
     rateLimiting: zod_1.z.object({
-        windowMs: zod_1.z.number().default(15 * 60 * 1000),
+        windowMs: zod_1.z.number().default(15 * 60 * 1000), // 15 minutes
         max: zod_1.z.number().default(100), // requests per window
     }),
 });

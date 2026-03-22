@@ -39,9 +39,9 @@ let SchedulerService = class SchedulerService {
         }
     }
 };
-SchedulerService = __decorate([
+exports.SchedulerService = SchedulerService;
+exports.SchedulerService = SchedulerService = __decorate([
     (0, tsyringe_1.injectable)(),
     __param(0, (0, tsyringe_1.inject)(content_repository_1.ContentRepository)),
     __metadata("design:paramtypes", [content_repository_1.ContentRepository])
 ], SchedulerService);
-exports.SchedulerService = SchedulerService;

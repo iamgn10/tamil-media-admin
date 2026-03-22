@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getAdStatus = exports.uniquePositions = void 0;
+exports.uniquePositions = void 0;
+exports.getAdStatus = getAdStatus;
 exports.uniquePositions = [
     "Billboard",
     "Large Leaderboard",
@@ -15,4 +16,3 @@ function getAdStatus(start, end) {
         return "expired";
     return "published";
 }
-exports.getAdStatus = getAdStatus;

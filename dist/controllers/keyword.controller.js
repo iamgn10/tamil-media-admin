@@ -102,9 +102,9 @@ let KeywordController = class KeywordController {
         }
     }
 };
-KeywordController = __decorate([
+exports.KeywordController = KeywordController;
+exports.KeywordController = KeywordController = __decorate([
     (0, tsyringe_1.injectable)(),
     __param(0, (0, tsyringe_1.inject)(keyword_service_1.KeywordService)),
     __metadata("design:paramtypes", [keyword_service_1.KeywordService])
 ], KeywordController);
-exports.KeywordController = KeywordController;
