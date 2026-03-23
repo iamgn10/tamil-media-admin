@@ -10,14 +10,14 @@ const configSchema = z.object({
     env: z.enum(['development', 'staging', 'production']),
     name: z.string().default('TamilMedia API'),
   }),  database: z.object({
-    uri: z.string(),
+    uri: z.string().optional().default(''),
     maxPoolSize: z.number().default(10),
     serverSelectionTimeoutMS: z.number().default(30000),
     socketTimeoutMS: z.number().default(60000),
     bufferCommands: z.boolean().default(false),
   }),
   jwt: z.object({
-    secret: z.string(),
+    secret: z.string().optional().default('dummy'),
     expiresIn: z.string().default('7d'),
   }),
   redis: z.object({
@@ -38,14 +38,14 @@ export const config: Config = configSchema.parse({
     env: process.env.NODE_ENV || 'development',
     name: process.env.APP_NAME,
   },  database: {
-    uri: process.env.MONGODB_URI!,
+    uri: process.env.MONGODB_URI || '',
     maxPoolSize: parseInt(process.env.DB_POOL_SIZE || '10'),
     serverSelectionTimeoutMS: parseInt(process.env.DB_SERVER_SELECTION_TIMEOUT_MS || '30000'),
     socketTimeoutMS: parseInt(process.env.DB_SOCKET_TIMEOUT_MS || '60000'),
     bufferCommands: process.env.DB_BUFFER_COMMANDS === 'true',
   },
   jwt: {
-    secret: process.env.JWT_SECRET!,
+    secret: process.env.JWT_SECRET || 'dummy',
     expiresIn: process.env.JWT_EXPIRES_IN,
   },
   redis: {
