@@ -5,6 +5,7 @@ import { AuthRepository } from '../repositories/auth.repository';
 import { Role } from '../models/role.model';
 import mongoose from 'mongoose';
 import jwt from 'jsonwebtoken';
+import * as Zen from '@aikidosec/firewall';
 
 const authRepository = new AuthRepository();
 
@@ -66,6 +67,12 @@ export const Authenticated = async (
       roleId: user.roleId.toString(),
       roleName: user.roleId.role_name || '',
     };
+
+    // Set the authenticated user for Aikido Zen
+    Zen.setUser({
+      id: user._id.toString(),
+      name: user.username,
+    });
 
     // Proceed to the next middleware
     next();

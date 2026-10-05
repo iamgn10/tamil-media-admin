@@ -12,6 +12,7 @@ services:
       DB_NAME: auth_api
       DB_PORT: 3306
       NODE_ENV: development
+      AIKIDO_TOKEN:
     depends_on:
       db:
         condition: service_healthy

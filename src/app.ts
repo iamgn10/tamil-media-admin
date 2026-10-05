@@ -1,3 +1,4 @@
+import "@aikidosec/firewall";
 import "reflect-metadata";
 import express from 'express';
 import { json } from 'body-parser';
@@ -14,6 +15,7 @@ import cors from 'cors';
 import { apiLimiter } from "./middlewares/rateLimit.middleware";
 import connectDB from "./config/database";
 import { CronService } from './services/cron.service';
+import * as Zen from "@aikidosec/firewall";
 
 // Load environment variables
 dotenv.config();
@@ -59,6 +61,9 @@ if (process.env.NODE_ENV === 'development') {
 
 // Middleware
 app.use(json());
+
+// Aikido Zen firewall middleware (rate limiting and user blocking)
+Zen.addExpressMiddleware(app);
 
 // Force Swagger to be available in production on Vercel so you can audit the API endpoints
 app.use(process.env.SWAGGER_URL || '/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
