@@ -4,6 +4,31 @@ import sharp from "sharp";
 import path from "path";
 import { CloudflareR2Config } from "../lib/cloudflare.config";
 
+function buildValidatedUrl(baseUrl: string): string {
+  try {
+    // Reject path traversal before new URL() resolves dot-segments
+    if (baseUrl.includes('/../') || /\/%2e%2e\//i.test(baseUrl)) {
+      throw new Error('Invalid path');
+    }
+
+    const url = new URL(baseUrl);
+
+    const allowedDomains = ['example.com']; // add your allowed domains here
+    if (!allowedDomains.includes(url.hostname)) {
+      throw new Error('Invalid host');
+    }
+
+    if (!['http:', 'https:'].includes(url.protocol)) {
+      throw new Error('Invalid protocol');
+    }
+
+    return url.href;
+  } catch {
+    throw new Error('Invalid URL');
+  }
+}
+
+
 
 export class ImageService {
   private static s3Client = new S3Client({
@@ -200,7 +225,7 @@ export class ImageService {
       const fileName = urlParts[urlParts.length - 1];
       
       // Fetch the original image from R2
-      const response = await fetch(imageUrl);
+      const response = await fetch(buildValidatedUrl(imageUrl));
       //console.log('response from r2:', response);
       
       if (!response.ok) {
